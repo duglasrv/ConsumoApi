@@ -37,6 +37,8 @@ html {
     justify-content: center;
     min-height: 100%;
     padding: 20px;
+    position: absolute;
+    width: 100%;
   }
   
   #formContent {
@@ -54,7 +56,6 @@ html {
   }
   
   #formFooter {
-    background-color: #f6f6f6;
     border-top: 1px solid #dce8f1;
     padding: 25px;
     text-align: center;
@@ -114,6 +115,7 @@ html {
   }
   
   input[type=text] {
+    width: 73%;
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
