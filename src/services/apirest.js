@@ -1,1 +1,1 @@
-export const Apiurl = "https://strapi-demo-20av.onrender.com/"
+export const Apiurl = "https://strapi-demo-20av.onrender.com/api/auth/local/"

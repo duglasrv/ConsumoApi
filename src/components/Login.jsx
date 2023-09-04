@@ -7,7 +7,7 @@ class Login extends React.Component {
 
     state={
         form:{
-            "usuario":"",
+            "identifier":"",
             "password":""
         },
         error:false,
@@ -54,7 +54,7 @@ class Login extends React.Component {
 
     
                         <form onSubmit={this.manejadorSubmit}>
-                            <input type="text" id="login" className="fadeIn second" name="login" placeholder="login" onChange={this.manejadorChange} />
+                            <input type="text" id="login" className="fadeIn second" name="identifier" placeholder="login" onChange={this.manejadorChange} />
                             <input type="text" id="password" className="fadeIn third" name="password" placeholder="password" onChange={this.manejadorChange} />
                             <input type="submit" className="fadeIn fourth" value="Log In" onClick={this.manejadorBoton} />
                         </form>
