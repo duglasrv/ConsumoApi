@@ -13,7 +13,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/nuevo" element={<Nuevo />} />
-          <Route path="/editar" element={<Editar />} />
+          <Route path="/editar/:id" element={<Editar />} />
         </Routes>
       </Router>
     </React.Fragment>
