@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import '../assets/css/Login.css';
 import { Apiurl } from '../services/apirest';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'; // Importa SweetAlert2
 
 function Login() {
     const [form, setForm] = useState({
@@ -12,7 +13,7 @@ function Login() {
     const [error, setError] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
 
-    const navigate = useNavigate(); // Obtiene la función navigate
+    const navigate = useNavigate();
 
     const manejadorSubmit = (e) => {
         e.preventDefault();
@@ -32,18 +33,22 @@ function Login() {
             .then((response) => {
                 if (response.status === 200) {
                     localStorage.setItem('token', response.data.jwt);
-                    navigate('/dashboard'); // Usa navigate para redirigir al usuario al dashboard después del inicio de sesión exitoso
+                    Swal.fire('Éxito', 'Inicio de sesión exitoso', 'success').then(() => {
+                        navigate('/dashboard');
+                    });
                 }
             })
             .catch((error) => {
-                console.error('Error en la solicitud:', error);
-                console.log('Error en status', error.response.status);
+                //console.error('Error en la solicitud:', error);
+                //console.log('Error en status', error.response.status);
                 if (error.response && error.response.data && error.response.data.error && error.response.data.error.message) {
                     setError(true);
                     setErrorMsg(error.response.data.error.message);
+                    Swal.fire('Error', error.response.data.error.message, 'error');
                 } else {
                     setError(true);
                     setErrorMsg('Error al conectar al API');
+                    Swal.fire('Error', 'Error al conectar al API', 'error');
                 }
             });
     };
@@ -60,13 +65,7 @@ function Login() {
                         <input type="text" id="password" className="fadeIn third" name="password" placeholder="password" onChange={manejadorChange} />
                         <input type="submit" className="fadeIn fourth" value="Log In" onClick={manejadorBoton} />
                     </form>
-                    <div id="formFooter">
-                        {error && (
-                            <div className="alert alert-danger" role="alert">
-                                {errorMsg}
-                            </div>
-                        )}
-                    </div>
+                    
                 </div>
             </div>
         </div>
